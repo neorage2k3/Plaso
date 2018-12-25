@@ -50,7 +50,7 @@
 6. Use psort to extract slices of data for analsys. 
 7. Use pinfo to extract data for case notes.
 
-# Export data for analsyis with other tools
+# Export data for analysis with other tools
 * Data collections from the volume/partitions and the volume shadow servers (VSS) cannot be collected in one pass. 
 * Create a top level export directory "exports_path."  This will be the top level of the exported data. 
 * Use the following to export the desired data to different top level structures. Plaso will keep the directory structure from the image.
@@ -112,7 +112,7 @@ psort.py--analysis tagging --tagging-file plaso\data\tag_windows.txt -o null tim
 psort.py --analysis nsrlsvr --nsrlsvr-hash md5 --nslrlsvr-host ipaddress --nsrlsvr-port 9120 --nsrl-la bel NSRL262 -o null timeline.plaso
 ```
 
-# Analsyis
+# Analysis
 ## Output file options
 
 ## Finding Additional Fields
