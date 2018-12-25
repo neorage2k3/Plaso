@@ -1,9 +1,10 @@
 # Cookbook Plaso 20181219
 
 * This is a summary of what I've learned having to start from zero knownlege of the Plaso tool suite.
+* At the time of this writing, the `--workers` and  `--worker_memory_limit` were not functioning on my real world test Windows 7 test image.  To successfully run log2timeline, the `--single_process` had to be utilzed. 
 
 # Suggestions
-* Never run Log2timeline with no constraints.
+* Never run Log2timeline with out constraints.
 * Create a VM dedicated to Plaso.  Using a dedicated VM keeps Plaso from hogging all the resources on the host OS.  
 * If running on the host OS or if processing power for other applications is needed, use the `--workers` setting  option to something reasonable.
 * Create an export filter for the artifacts that can or need to be processed by other tools; ie regripper.
