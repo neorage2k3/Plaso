@@ -1,7 +1,7 @@
 # Cookbook Plaso 20181219
 
 * This is a summary of what I've learned having to start from zero knownlege of the Plaso tool suite.
-* At the time of this writing, the `--workers` and  `--worker_memory_limit` were not functioning on my real world test Windows 7 test image using fresh install of Ubuntu 18.04 in a VMWare Workstation with 16G RAM and 8 Processor cores. Using these options resulted in unhandled out of memory errors.  To successfully run log2timeline, the `--single_process` had to be utilzed. Older version of Plaso ran find when using the offending options.  
+* At the time of this writing, the `--workers` and  `--worker_memory_limit` were not functioning on my real world test Windows 7 test image using fresh install of Ubuntu 18.04 in a VMWare Workstation with 16G RAM and 8 Processor cores. Using these options resulted in unhandled out of memory errors.  To successfully run log2timeline, the `--single_process` had to be utilzed. Plaso was installed from the GIFT repo.  Older version of Plaso ran find when using the offending options.  I was able to use plaso-20181219-py3.6-amd64.zip successfully on a bare metal Win10 installation without issue (so far).
 
 # Suggestions
 * Never run Log2timeline with out constraints.
