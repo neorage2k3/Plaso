@@ -110,7 +110,7 @@ psort.py--analysis tagging --tagging-file plaso\data\tag_windows.txt -o null tim
 * If a NSRLSVR is available use the following to add the NSRL tags.
 * [Info on NSRLSVR](https://rjhansen.github.io/nsrlsvr/)
 ```
-psort.py --analysis nsrlsvr --nsrlsvr-hash md5 --nslrlsvr-host ipaddress --nsrlsvr-port 9120 --nsrl-label NSRL262 -o null timeline.plaso
+psort.py --analysis nsrlsvr --nsrlsvr-hash md5 --nsrlsvr-host ipaddress --nsrlsvr-port 9120 --nsrl-label NSRL262 -o null timeline.plaso
 ```
 
 # Analysis
