@@ -59,24 +59,22 @@ image_export.py -f collection_filter.txt --partitions all --no_vss -w exports_pa
 image_export.py -f collection_filter.txt --vss_only --vss_stores all -w exports_path_vss image_file.e01
 ```
 # Timeline the Collected Artifacts 
-* The following may work:
+* The following ingests from all of the volumes and volume shadow copies.  Plaso will use the default parsers settins (win7):
 ```
 log2timeline.py -f collection_filter.txt --status_view window --partitions all --vss_stores all --hashers md5,sha1 --hasher_file_size_limit 0 timeline.plaso image_file.e01
-```
-* But use two passes like image_export to be sure:
-```
-log2timeline.py -f collection_filter.txt --status_view window --partitions all --no_vss --hashers md5,sha1 --hasher_file_size_limit 0 timeline.plaso image_file.e01
-log2timeline.py -f collection_filter.txt --status_view window --vss_only --vss_stores all --hashers md5,sha1 --hasher_file_size_limit 0 timeline.plaso image_file.e01
 ```
 
 # Adding more constraints 
 ## Understanding Parsers
 * Supported parsers can be found by running `log2timeline.py --parsers list`
-* One good method of creating timelines is around filters and/or parsers.
+* One good method of creating timelines is around parsers and filters.
 * Creating timelines based on case needs will be all be faster than ingesting all artifacts.
-* Here is an example of using a specific parsers
+* Here is an example of using a specific parser to parse only Windows Event logs.
 ```
-log2timeline.py --status_view window -f collection_filter.txt --status_view window --partitions all --no_vss --parsers win7 -hashers md5,sha1 --hasher_file_size_limit 0 timeline.plaso image_file.e01
+log2timeline.py --status_view window -f collection_filter.txt --status_view window --partitions all --no_vss --parsers winevtx -hashers md5,sha1 --hasher_file_size_limit 0 timeline.plaso image_file.e01
+```
+* Here is an example of using a specific parser to parse a body file.
+```
 log2timeline.py --status_view window --parsers mactime timeline.plaso body_file.body
 ```
 ## Understanding Workers
