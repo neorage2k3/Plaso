@@ -69,9 +69,9 @@ log2timeline.py -f collection_filter.txt --status_view window --partitions all -
 * Supported parsers can be found by running `log2timeline.py --parsers list`
 * One good method of creating timelines is around parsers and filters.
 * Creating timelines based on case needs will be all be faster than ingesting all artifacts.
-* Here is an example of using a specific parser to parse only Windows Event logs.
+* Here is an example of using a specific parser to parse only Windows Event logs. (Need to test using a filter with only event log locations.  Without a filter, the entire file system is examined for event logs.)
 ```
-log2timeline.py --status_view window -f collection_filter.txt --status_view window --partitions all --no_vss --parsers winevtx -hashers md5,sha1 --hasher_file_size_limit 0 timeline.plaso image_file.e01
+log2timeline.py --status_view window --status_view window --partitions all --no_vss --parsers winevtx -hashers md5,sha1 --hasher_file_size_limit 0 timeline.plaso image_file.e01
 ```
 * Here is an example of using a specific parser to parse a body file.
 ```
