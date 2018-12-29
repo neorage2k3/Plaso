@@ -1,17 +1,22 @@
 # Cookbook Plaso 20181219
 
 * This is a summary of what I've learned having to start from zero knownlege of the Plaso tool suite.
-* At the time of this writing, the `--workers` and  `--worker_memory_limit` were not functioning on my real world test Windows 7 test image using fresh install of Ubuntu 18.04 in a VMWare Workstation with 16G RAM and 8 Processor cores. Using these options resulted in unhandled out of memory errors.  To successfully run log2timeline, the `--single_process` had to be utilzed. Plaso was installed from the GIFT repo.  Older version of Plaso ran find when using the offending options.  I was able to use plaso-20181219-py3.6-amd64.zip successfully on a bare metal Win10 installation without issue (so far).
+* At the time of this writing, the `--workers` and  `--worker_memory_limit` were not functioning on my real world test Windows 7 test image using fresh install of Ubuntu 18.04 in a VMWare Workstation with 16G RAM and 8 Processor cores. Using these options resulted in unhandled out of memory errors.  Plaso was installed from the GIFT repo. Will test again in a few weeks.   
+* I was able to use plaso-20181219-py3.6-amd64.zip successfully on a bare metal Win10 installation without issues only with certain `psort.exe --analysis` options.  Testing Continues.
 
 # Suggestions
 * Never run Log2timeline with out constraints.
-* Create a VM dedicated to Plaso.  Using a dedicated VM keeps Plaso from hogging all the resources on the host OS.  
+* Create a dedicated VM dedicated to Plaso.  Using a dedicated VM keeps Plaso from hogging all the resources on the host OS.  
 * If running on the host OS or if processing power for other applications is needed, use the `--workers` setting  option to something reasonable.
 * Create an export filter for the artifacts that can or need to be processed by other tools; ie regripper.
 * If running Plaso against a mounted drive image, run all commands against the mounted image as root/admin.
 * Consider running Plaso in multiple targeted passes, each pass only getting what is needed.
 * Output the help of log2timeline and psort to a text file for quick reference. 
-* Each option used adds a certain amount of time, choose options carefully.
+* Each option used adds a certain amount of time, choose options carefully.  
+* Create a Plaso toolbox:
+** Create targeted filters
+** Create targeted tags
+** Create different targeted scripts based on purpose.
 
 # Suggested VM Setup
 * As many processors possible.
