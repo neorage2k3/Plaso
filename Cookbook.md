@@ -1,5 +1,7 @@
 # Cookbook Plaso 20181219
 
+* Artifacts are the future. A lot of this will be changing, hopefully soon.
+
 * This is a summary of what I've learned having to start from zero knownlege of the Plaso tool suite.
 * At the time of this writing, the `--workers` and  `--worker_memory_limit` were not functioning on my real world test Windows 7 test image using fresh install of Ubuntu 18.04 in a VMWare Workstation with 16G RAM and 8 Processor cores. Using these options resulted in unhandled out of memory errors.  Plaso was installed from the GIFT repo. Will test again in a few weeks.   
 * I was able to use plaso-20181219-py3.6-amd64.zip successfully on a bare metal Win10 installation without issues only with certain `psort.exe --analysis` options.  Testing Continues.
