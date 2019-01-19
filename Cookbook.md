@@ -135,7 +135,7 @@ psort.py --slice "2018-04-16 12:00:00 PM" --slice_size 720 -o xlsx -w slice_2018
 ```
 * Slice by date range
 ```
-psort.py -o xlsx -w slice_20180227.xlsx -q --additional_fields hostname,computer_name,event_identifier,md5_hash,sha1_hash,location,username,user_sid,xml_string timeline.plaso "date < '2018-02-28 00:00:00' and date > '2018-2-27 00:00:00'"
+psort.py -o xlsx -w slice_20180227.xlsx -q --additional_fields hostname,computer_name,event_identifier,md5_hash,sha1_hash,location,username,user_sid,xml_string timeline.plaso "date > '2018-02-27 00:00:00' and date < '2018-2-28 00:00:00'"
 ```
 
 # Other considerations when/if time is not a factor
