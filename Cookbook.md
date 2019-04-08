@@ -1,13 +1,8 @@
-# Cookbook Plaso 20181219
-
+# Cookbook Plaso 
 * Artifacts are the future. A lot of this will be changing, hopefully soon.
 
-* This is a summary of what I've learned having to start from zero knownlege of the Plaso tool suite.
-* At the time of this writing, the `--workers` and  `--worker_memory_limit` were not functioning on my real world test Windows 7 test image using fresh install of Ubuntu 18.04 in a VMWare Workstation with 16G RAM and 8 Processor cores. Using these options resulted in unhandled out of memory errors.  Plaso was installed from the GIFT repo. Will test again in a few weeks.   
-* I was able to use plaso-20181219-py3.6-amd64.zip successfully on a bare metal Win10 installation without issues only with certain `psort.exe --analysis` options.  Testing Continues.
-
 # Suggestions
-* Never run Log2timeline with out constraints.
+* Never run Log2timeline without constraints.
 * Create a dedicated VM dedicated to Plaso.  Using a dedicated VM keeps Plaso from hogging all the resources on the host OS.  
 * If running on the host OS or if processing power for other applications is needed, use the `--workers` setting  option to something reasonable.
 * Create an export filter for the artifacts that can or need to be processed by other tools; ie regripper.
@@ -87,6 +82,17 @@ log2timeline.py --status_view window --parsers mactime timeline.plaso body_file.
 ## Understanding Workers
 * Use the `--workers` or `--single_process` to reduce the procressing power log2timeline can use.  This is important when processing power is needed for other activites on the host.
 ```
+* Math to calculate RAM requirements for number of workers. 
+	• 4GB for Main 
+	• 2GB per worker
+ 
+--workers 2 would require a system with 8GB RAM (2*2+4) 
+--workers 3 would require a system with 10GB RAM (3*2+4)
+--workers 4 would require a system with 12GB RAM (4*2+4)
+--workers 5 would require a system with 14GB RAM (5*2+4) 
+--workers 6 would require a system with 16GB RAM (6*2+4) 
+
+
 log2timeline.py --single_process -f timeline_filter.txt --status_view window --partitions all --vss_stores all --hashers md5,sha1 --hasher_file_size_limit 0 timeline.plaso image_file.e01
 log2timeline.py --workers 6 --worker_memory_limit 1073741824 -f timeline_filter.txt --status_view window --partitions all --vss_stores all --hashers md5,sha1 --hasher_file_size_limit 0 timeline.plaso image_file.e01
 ```
