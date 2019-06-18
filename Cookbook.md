@@ -1,9 +1,10 @@
 # Cookbook Plaso 
-* Artifacts are the future. A lot of this will be changing, hopefully soon.
+* Artifacts are the future. 
 
 # Suggestions
 * Never run Log2timeline without constraints.
-* Create a dedicated VM dedicated to Plaso.  Using a dedicated VM keeps Plaso from hogging all the resources on the host OS.  
+* Create a dedicated "beefy" VM dedicated to Plaso.  Using a dedicated VM keeps Plaso from hogging all the resources on the host OS.  
+* Run Plaso in WSL.
 * If running on the host OS or if processing power for other applications is needed, use the `--workers` setting  option to something reasonable.
 * Create an export filter for the artifacts that can or need to be processed by other tools; ie regripper.
 * If running Plaso against a mounted drive image, run all commands against the mounted image as root/admin.
@@ -17,7 +18,7 @@
 
 # Suggested VM Setup
 * As many processors possible.
-* As much memory that can be spared that aligns with the number of processors given.  I suggest at least 2G per processor.
+* As much memory that can be spared that aligns with the number of processors given. 
 * Clean Ubuntu LTS or supported Linux Distro.
 * Latest Plaso. (https://plaso.readthedocs.io/en/latest/sources/user/Ubuntu-Packaged-Release.html)
 
@@ -133,15 +134,16 @@ psort.py --analysis nsrlsvr --nsrlsvr-hash md5 --nsrlsvr-host ipaddress --nsrlsv
 psort.py --slice "2018-12-22 12:00:00 PM" --slice_size 720 -o json -w slicetime.json -q timelime.plaso
 ```
 * Overall, I recommend the use of the xlsx with addtional fields on data sliced by time constraints.
+* Use json_line for elasticsearch ingest.
 
 # More Slicing examples
 * Slice out a 24 hour period, 12 hour each side of a timestamp, using xlsx output and addtional fields
 ```
-psort.py --slice "2018-04-16 12:00:00 PM" --slice_size 720 -o xlsx -w slice_20180416.xlsx -q --additional_fields hostname,computer_name, event_identifier, md5_hash, sha1_hash, location, username, user_sid, xml_string timeline.plaso
+psort.py --slice "2019-04-16 12:00:00 PM" --slice_size 720 -o xlsx -w slice_20190416.xlsx -q --additional_fields hostname,computer_name, event_identifier, md5_hash, sha1_hash, location, username, user_sid, xml_string timeline.plaso
 ```
 * Slice by date range
 ```
-psort.py -o xlsx -w slice_20180227.xlsx -q --additional_fields hostname,computer_name,event_identifier,md5_hash,sha1_hash,location,username,user_sid,xml_string timeline.plaso "date > '2018-02-27 00:00:00' and date < '2018-2-28 00:00:00'"
+psort.py -o xlsx -w slice_20190227.xlsx -q --additional_fields hostname,computer_name,event_identifier,md5_hash,sha1_hash,location,username,user_sid,xml_string timeline.plaso "date > '2019-02-27 00:00:00' and date < '2019-02-28 00:00:00'"
 ```
 
 # Other considerations when/if time is not a factor
@@ -149,8 +151,8 @@ psort.py -o xlsx -w slice_20180227.xlsx -q --additional_fields hostname,computer
 * All items will be hashed with MD5, SHA1 and SHA256.  
 * These commands can take multiple days and is only recommended for testing and learning
 ```
-log2timeline.py --no_dependencies_check --status_view window --partitions all --no_vss --process_archives --hashers all --hasher_file_size_limit 0 timeline.plaso image_file.e01
-log2timeline.py --no_dependencies_check --status_view window --vss_only --vss_stores all --process_archives --hashers all --hasher_file_size_limit 0 timeline.plaso image_file.e01
+log2timeline.py --status_view window --partitions all --no_vss --process_archives --hashers all --hasher_file_size_limit 0 timeline.plaso image_file.e01
+log2timeline.py --status_view window --vss_only --vss_stores all --process_archives --hashers all --hasher_file_size_limit 0 timeline.plaso image_file.e01
 ```
 
 # Export documentation
