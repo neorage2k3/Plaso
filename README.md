@@ -3,7 +3,7 @@ Plaso Related Files
 
 Run to log2timeline using the triage filter.
 ```
-log2timeline.exe --no_dependencies_check --workers 6 --status_view window -z UTC --partitions all --vss_stores all -f triage_filter.txt --parsers win7 --hashers all --hasher_file_size_limit 0 image_file.e01
+log2timeline.py --status_view window -z UTC --partitions all --vss_stores all -f triage_filter.txt --hashers all --hasher_file_size_limit 0 image_file.e01
 ```
 Backup the timelime just in case something go wrong with the tagging.
 
