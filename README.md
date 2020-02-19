@@ -1,11 +1,11 @@
 # Plaso
 Plaso Related Files
 
-Run to log2timeline using the triage filter.
+Run the log2timeline using the triage filter.
 ```
 log2timeline.py --status_view window -z UTC --partitions all --vss_stores all -f triage_filter.txt --hashers all --hasher_file_size_limit 0 image_file.e01
 ```
-Backup the timelime just in case something go wrong with the tagging.
+Backup the timeline just in case something go wrong with the tagging.
 
 ```
 copy NT_triage_timeline.plaso triage_timeline.plaso
