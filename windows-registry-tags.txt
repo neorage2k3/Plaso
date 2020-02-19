@@ -1,0 +1,32 @@
+Documentation
+    data_type is 'windows:registry:installation' 
+    data_type is 'windows:registry:shutdown'
+    data_type is 'windows:registry:sam_users'
+
+Remote_Access_Source_RDP
+    data_type is 'windows:registry:appcompatcache' and path contains 'mstsc.exe'
+
+Remote_Access_Source_NetworkShare
+    data_type is 'windows:registry:appcompatcache' and path contains 'net.exe'
+    data_type is 'windows:registry:appcompatcache' and path contains 'net1.exe'
+
+Remote_Access_Destination_RDP
+    data_type is 'windows:registry:appcompatcache' and path contains 'rdpclip.exe'
+    data_type is 'windows:registry:appcompatcache' and path contains 'tstheme.exe'
+
+Remote_Access_Execution_Source
+     data_type is 'windows:registry:appcompatcache' and (path contains 'PsExec' or path contains 'at.exe' or path contains 'schtasks.exe' or path contains 'sc.exe' or  path contains 'wmiprvse.exe' or path contains 'powershell.exe')
+
+Remote_Access_Execution_Destination
+    data_type is 'windows:registry:appcompatcache' and (path contains 'psexesvc.exe' or path contains 'wmiprvse.exe' or path contains 'wsmprovhost.exe')
+
+Application_Execution
+  data_type is 'windows:registry:key_value' AND (plugin contains 'userassist' or plugin contains 'mru') AND regvalue.__all__ contains '.exe'
+  data_type is 'windows:registry:appcompatcache'
+
+Document_Open
+  data_type is 'windows:registry:key_value' AND plugin contains 'mru' AND regvalue.__all__ notcontains '.exe' AND timestamp > 0
+
+Autorun
+  data_type is 'windows:registry:key_value' and plugin contains 'Run'
+  data_type is 'windows:registry:key_value' AND (plugin contains 'run' or plugin contains 'lfu') AND (regvalue.__all__ contains '.exe' OR regvalue.__all__ contains '.dll')
