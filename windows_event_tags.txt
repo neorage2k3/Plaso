@@ -1,0 +1,161 @@
+Threat_Detection
+    data_type is 'windows:evtx:record' and source_name is 'CbDefense' and event_identifier is 33
+
+Possible_Threat
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4674 and xml_string contains '<Data Name='ProcessName'>C:\Windows\System32\conhost.exe</Data>' 
+    data_type is 'windows:evtx:record' display_name contains 'Microsoft-Windows-International' and event_identifier is 1001 nd xml_string contains 'Illegal operation attempted on a registry key'
+
+Remote_Access_Source_RDP
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-RDPClient'and (event_identifier is 1024 or event_identifier is 1102)
+
+Remote_Access_Source_NetworkShare
+    data_type is 'windows:evtx:record' and display_name contains 'Microsoft-Windows-SmbClient' and event_identifier is 31001
+
+Remote_Access_Destination_RDP
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">10</Data>'
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and (event_identifier is 4778 or event_identifier is 4779)
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 21 and xml_string notcontains '<Address>LOCAL</Address>'
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 1158
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-RemoteConnectionManager' and event_identifier is 1149
+
+Remote_Access_Destination_NetworkShare
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4776
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4768
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4769
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 5145
+
+Remote_Access_Execution_Source
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4648
+
+Remote_Access_Execution_Destination
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">3</Data>'
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4672
+    
+Remote_Execution_Destination
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 5140
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4698 
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4702
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4699 
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4700 
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4701
+    data_type is 'windows:evtx:record' and source_name is 'Service Control Manager' and event_identifier is 7034
+    data_type is 'windows:evtx:record' and source_name is 'Service Control Manager' and event_identifier is 7035
+    data_type is 'windows:evtx:record' and source_name is 'Service Control Manager' and event_identifier is 7036 
+    data_type is 'windows:evtx:record' and source_name is 'Service Control Manager' and event_identifier is 7040
+
+Remote_Access_Attempt
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 1101
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-RemoteConnectionManager' and event_identifier is 1147
+
+Remote_Access_Logoff
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and (event_identifier is 23 or event_identifier is 24) and xml_string notcontains '<Address>LOCAL</Address>'  
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 1103
+
+Remote_Session_Disconnection
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 24
+
+Remote_Session_Reconnection
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 25
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 1105
+
+Remote_Shell_Start
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 22 and xml_string notcontains '<Address>LOCAL</Address>'
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 1102
+
+Logon_Failed
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4625
+
+New_Service_Install_AutoStart
+    data_type is 'windows:evtx:record' and source_name is 'Service Control Manager' and event_identifier is 7045 and (xml_string contains '<Data Name="StartType">auto start</Data>' or xml_string contains '<Data Name="StartType">boot start</Data>' or xml_string contains '<Data Name="StartType">system start</Data>')
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4697
+
+Service_Restart
+    data_type is 'windows:evtx:record' and source_name is 'Service Control Manager' and event_identifier is 7036
+
+Time_Change
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Kernel-General' and event_identifier is 1
+
+System_ShutDown
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Kernel-General' and event_identifier is 13
+
+System_Start
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Kernel-General' and event_identifier is 12
+
+EventLog_Start
+    data_type is 'windows:evtx:record' and source_name is 'Service Control Manager' and event_identifier is 6005
+
+EventLog_Stop
+    data_type is 'windows:evtx:record' and source_name is 'Service Control Manager' and event_identifier is 6006
+
+Application_Execution
+    data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4688
+
+Application_Install
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Application-Experience' and event_identifier is 903
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Application-Experience' and event_identifier is 904
+
+Application_Update
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Application-Experience' and event_identifier is 905
+
+Application_Removal
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Application-Experience' and event_identifier is 907
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Application-Experience' and event_identifier is 908
+
+Document_Open
+  data_type is 'windows:registry:key_value' AND plugin contains 'mru' AND regvalue.__all__ notcontains '.exe' AND timestamp > 0
+
+Login_Failed
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4625
+
+Login_Attempt
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Winlogon' and event_identifier is 7001
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-User Profiles Service' and event_identifier is 2
+  data_type is 'windows:evtx:record' and display_name contains 'Microsoft-Windows-OfflineFiles' and event_identifier is 7
+
+Logoff
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4634
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Winlogon' and event_identifier is 7002
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-User Profiles Service' and event_identifier is 4
+  data_type is 'windows:evtx:record' and display_name contains 'Microsoft-Windows-OfflineFiles' and event_identifier is 8
+
+Job_Success
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TaskScheduler' and event_identifier is 102
+
+Task_Action_Success
+  data_type is 'windows:evtx:record' and display_name contains 'Microsoft-Task Scheduler' and event_identifier is 106
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TaskScheduler' and event_identifier is 129
+  data_type is 'windows:evtx:record' and display_name contains 'Microsoft-Task Scheduler' and event_identifier is 140
+  data_type is 'windows:evtx:record' and display_name contains 'Microsoft-Task Scheduler' and event_identifier is 141
+  data_type is 'windows:evtx:record' and display_name contains 'Microsoft-Task Scheduler' and event_identifier is 200
+  data_type is 'windows:evtx:record' and display_name contains 'Microsoft-Task Scheduler' and event_identifier is 201
+
+Name_Resolution_Timeout
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-DNS-Client' and event_identifier is 1014
+
+System_Sleep
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Kernel-Power' and event_identifier is 42
+
+SystemAccount_Logon_0
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">0</Data>'
+
+Console_Logon_2
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">2</Data>'
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-TerminalServices-LocalSessionManager' and event_identifier is 21 and xml_string contains '<Address>LOCAL</Address>'
+
+Batch_Logon_4
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">4</Data>'
+
+Service_Startup_5
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">5</Data>'
+
+Screen_Unlock_7
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">7</Data>'
+
+Network_ClearText_8
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">8</Data>'
+
+Run_As_9
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">9</Data>'
+
+Cached_Interactive_11
+  data_type is 'windows:evtx:record' and source_name is 'Microsoft-Windows-Security-Auditing' and event_identifier is 4624 and xml_string contains '<Data Name="LogonType">11</Data>'
