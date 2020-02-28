@@ -139,7 +139,7 @@ psort.py --slice "2018-12-22 12:00:00 PM" --slice_size 720 -o json -w slicetime.
 # More Slicing examples
 * Slice out a 24 hour period, 12 hour each side of a timestamp, using xlsx output and addtional fields
 ```
-psort.py --slice "2019-04-16 12:00:00 PM" --slice_size 720 -o xlsx -w slice_20190416.xlsx -q --additional_fields hostname,computer_name, event_identifier, md5_hash, sha1_hash, location, username, user_sid, xml_string timeline.plaso
+psort.py --slice "2019-04-16 12:00:00 PM" --slice_size 720 -o xlsx -w slice_20190416.xlsx -q --additional_fields hostname,computer_name,event_identifier,md5_hash,sha1_hash,location,username,user_sid,xml_string timeline.plaso
 ```
 * Slice by date range
 ```
